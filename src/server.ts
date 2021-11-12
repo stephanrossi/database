@@ -3,6 +3,9 @@ import dotenv from "dotenv"
 import mustache from "mustache-express"
 import path from "path"
 
+import MainRoutes from "./routes"
+import { Server } from "http"
+
 //Initialize DOTENV
 dotenv.config()
 
@@ -18,7 +21,13 @@ app.engine("mustache", mustache())
 app.use(express.static(path.join(__dirname, "../public")))
 
 //Routes
+app.use(MainRoutes)
+
+//404
+app.use((req, res) => {
+  res.send("Página não encontrada")
+})
 
 //Start server
-app.listen(process.env.PORT || 3001)
+app.listen(process.env.PORT || 3000)
 console.log("\n" + "Server running" + "\n")
