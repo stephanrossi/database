@@ -25,7 +25,7 @@ app.use(MainRoutes)
 
 //404
 app.use((req, res) => {
-  res.send("Página não encontrada")
+  res.render("pages/404")
 })
 
 //Start server
